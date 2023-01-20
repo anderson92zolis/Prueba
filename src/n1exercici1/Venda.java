@@ -15,45 +15,40 @@ public class Venda {
 	public ArrayList<Producte> getColleccioDeProductes() {
 		return colleccioDeProductes;
 	}
+	
+	public int getPreuTotalDeVenda() {
+		return preuTotalDeVenda;
+	} 
+	
 	public void setColleccioDeProductes(ArrayList<Producte> colleccioDeProductes) {
 		this.colleccioDeProductes = colleccioDeProductes;
 	}
-	public int getPreuTotalDeVenda() {
-		return preuTotalDeVenda;
-	}
+	
 	public void setPreuTotalDeVenda(int preuTotalDeVenda) {
 		this.preuTotalDeVenda = preuTotalDeVenda;
 	}
 
-	public void calcularTotal()  {
-		try {
-			getMessage();
-			//preuTotalDeVenda(colleccioDeProductes); //Si la col·lecció té productes, llavors ha de recórrer la col·lecció i guardar la suma de tots els preus dels productes a l’atribut preu total de la venda.;;
-			//System.out.println(">0");
+	public void  ExaminacalcularTotal()  {
+	// necesidad de creaer crear un try/catch por que el error es de tipo Exception.
+		try {			
+			calcularTotal();
 			
-		} catch (Exception e){	 
-				System.out.println("Per fer una venda primer has d’afegir productes");
-				//VendaBuidaException vendaBuidaException = new VendaBuidaException();
-				//Exception vendaBuidaException = new VendaBuidaException();
-				//vendaBuidaException.getMessage();	
-				//System.out.println("<0");
+		} catch (VendaBuidaException e){	 
+				System.out.println(e.getMessage());
 	      }
 	}
 	
-	public void getMessage() throws VendaBuidaException{
-		if (colleccioDeProductes.size()>0) {
-			preuTotalDeVenda(colleccioDeProductes);
-		}  
-		else {
-			throw new VendaBuidaException("Per fer una venda primer has d’afegir productes");
-			}
-	}
 	
-	public void preuTotalDeVenda(ArrayList<Producte> colleccioDeProductes) {
-		int suma= 0;
-		for (int i = 0; i < colleccioDeProductes.size(); i++) {
-		     suma +=  colleccioDeProductes.get(i).getPreu();
-			}
+	public void calcularTotal() throws VendaBuidaException {
+		//Si la collecció té productes, llavors ha de recórrer la collecció i guardar la suma de tots els preus dels productes a l’atribut preu total de la venda
+		int suma=0;
+		if (colleccioDeProductes.size()>0) {
+			for (int i = 0; i < colleccioDeProductes.size(); i++) {
+			     suma +=  colleccioDeProductes.get(i).getPreu();
+				}
+			}  else {
+				throw new VendaBuidaException("Per fer una venda primer has d’afegir productes");
+				}
 		preuTotalDeVenda=suma;
 		}
 }

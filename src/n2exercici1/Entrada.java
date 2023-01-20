@@ -114,8 +114,6 @@ public class Entrada {
 				catch (Exception e) {
 					;System.out.println(" hi ha un error de typo "+e.getMessage());;
 					}
-		
-			
 		return myEnteredChar; 
 	};
 	
