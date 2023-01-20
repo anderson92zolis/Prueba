@@ -159,7 +159,7 @@ public class Entrada {
 				;
 				}
 				catch(LeguirSiNoException eSiNO) {
-					System.out.println("catch la teva resposta és (true/false): " +  eSiNO.getMessage());
+					System.out.println(eSiNO.getMessage());
 					}
 				catch(InputMismatchException e) {
 					System.out.println("La teva resposta no és un Boolean! Usuari/ària torna a introduir (s/n) ");
