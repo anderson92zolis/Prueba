@@ -8,7 +8,6 @@ public class Entrada {
 	
 		static Scanner myObj= new Scanner(System.in);
 		
-		
 //Mètodes a implantar capturant l’excepció de la classe InputMismatchException:
 		
 	public static byte llegirByte(String missatge) {
@@ -59,7 +58,7 @@ public class Entrada {
 		System.out.println(missatge);
 		
 		boolean continua=true;
-		float myEnteredFloat=0;
+		float myEnteredFloat= 1;
 		
 			do{ 
 				try{ 
@@ -101,12 +100,19 @@ public class Entrada {
 	public static char llegirChar(String missatge){
 		System.out.println(missatge);
 		boolean continua= true;
-		char myEnteredChar='a';
+		String myEnteredString="  ";
+		char myOutputChar=' ';
 		try { 
 			do {
-				myEnteredChar= myObj.next().charAt(0);
-				System.out.println("Primera lletra del teu nom es: "+myEnteredChar);
-				continua= false;
+				myEnteredString= myObj.nextLine();
+				//myEnteredString= myObj.next().charAt(0);  // toma la posición 0 del String
+				if (myEnteredString.length()==1) {
+					myOutputChar=myEnteredString.charAt(0);
+					System.out.println("Primera lletra del teu nom es de tipus char: "+myOutputChar);
+					continua= false;
+					} else {
+						System.out.println("introdueix primera lletra del teu nom, la lletra introduïda serà de tipus char?"); 
+						}
 				} while(continua);
 			} catch(InputMismatchException e) {
 				System.out.println("La teva resposta no és un character! Usuari/ària torna a introduir el teu nom!");
@@ -114,8 +120,9 @@ public class Entrada {
 				catch (Exception e) {
 					;System.out.println(" hi ha un error de typo "+e.getMessage());;
 					}
-		return myEnteredChar; 
-	};
+		return myOutputChar; 
+	}
+	
 	
 	public static String llegirString(String missatge){
 		
@@ -139,22 +146,25 @@ public class Entrada {
 			}while(cotinua);
 		
 		return myString; 
-	};
+	}
 	
 	public static boolean llegirSiNo(String missatge){
 		
 		System.out.println(missatge);
-		
-		boolean cotinua= false;
-		boolean mySiNo= false; 
-		
+		String myStringImput; 
+		boolean cotinua= true;
+		boolean mySiNo= false;
+	
 		do {
 			try {
-				char myFirstCaracter= myObj.nextLine().charAt(0);
-				mySiNo = examinaLeguirSiNoException(myFirstCaracter); //retorna true/false y lanza la exception
-				System.out.println("la teva resposta és (true/false): " + mySiNo);
-				cotinua= true;
-				;
+				myStringImput= myObj.nextLine();
+				if (myStringImput.length()==1) {
+					mySiNo = examinaLeguirSiNoException(myStringImput); //retorna true/false y lanza la exception
+					System.out.println("la teva resposta és (true/false): " + mySiNo);
+					cotinua= false;
+					}else {
+						System.out.println("l’usuari/ària introdueix “s”, retorna “true”, si l’usuari introdueix “n”, retorna “false”");
+						}
 				}
 				catch(LeguirSiNoException eSiNO) {
 					System.out.println(eSiNO.getMessage());
@@ -166,26 +176,26 @@ public class Entrada {
 					System.out.println(" hi ha un error de typo! " +ex.getMessage());
 					}
 				
-			} while(cotinua==false);
+			} while(cotinua);
 		
 		return mySiNo; 
 	};
 	
 	
-	public static boolean examinaLeguirSiNoException(char SiNO) throws LeguirSiNoException{
+	public static boolean examinaLeguirSiNoException(String SiNO) throws LeguirSiNoException{
 		
 		boolean siNo = false;
 		
-		if (SiNO=='s') {			
+		if (SiNO.equalsIgnoreCase("s")) {			
 			siNo= true;
 			}
-		else if (SiNO=='n'){
+		else if (SiNO.equalsIgnoreCase("n")){
 			siNo = false;;
 			}
 		else {
 			throw new LeguirSiNoException("l'elecció introduïda no coincideixi amb (Si/No)"+"\t\n"
 					+ "per Si introduïu -> " +" s "+ "\t\n"
-					+ "per No intruïu -> n");
+					+ "per No introduïu -> n");
 			}
 		return siNo;
 		}

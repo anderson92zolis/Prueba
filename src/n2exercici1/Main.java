@@ -11,9 +11,6 @@ public class Main {
 		//Entrada.llegirDouble("introdueix edat de la tortuga George, l'edat introduïda serà de tipus Double?");
 		//Entrada.llegirChar("introdueix primera lletra del teu nom, la lletra introduïda serà de tipus char?");
 		//Entrada.llegirString("introdueix el teu nom: ");
-		Entrada.llegirSiNo("l’usuari/ària introdueix “s”, retorna “true”, si l’usuari introdueix “n”, retorna “false”");
-		
-	}
-	
-	
+		//Entrada.llegirSiNo("l’usuari/ària introdueix “s”, retorna “true”, si l’usuari introdueix “n”, retorna “false”");
+	}	
 }
