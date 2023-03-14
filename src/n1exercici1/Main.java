@@ -3,7 +3,7 @@ import java.util.ArrayList; // import the ArrayList class
 import java.lang.*;
 public class Main {
 		
-	public static void main(String[] args) throws VendaBuidaException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 						
 		Producte producto1= new Producte("azúcar",3);
@@ -15,15 +15,14 @@ public class Main {
 		//ventas.addProducto(producto2);
 		
 		
-		
-		try {			
-			
+		try {
 			ventas.calcularTotal();
-			
-		} catch (IndexOutOfBoundsException e){	 
-				e.getMessage();
-	      }
+		} catch (ArrayIndexOutOfBoundsException | VendaBuidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+
 		System.out.println(ventas.getPreuTotalDeVenda());
 			
 	}

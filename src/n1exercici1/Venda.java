@@ -26,10 +26,11 @@ public class Venda {
 		this.preuTotalDeVenda = preuTotalDeVenda;
 	}
 		
-	public void calcularTotal() throws VendaBuidaException {
+	public void calcularTotal() throws VendaBuidaException, ArrayIndexOutOfBoundsException {
 		//Si la collecció té productes, llavors ha de recórrer la collecció i guardar la suma de tots els preus dels productes a l’atribut preu total de la venda
-		int suma=0;
 		
+		int suma=0;
+		try {		
 		if (colleccioDeProductes.size()>0) {
 			for (int i = 0; i < colleccioDeProductes.size(); i++) {
 			     suma +=  colleccioDeProductes.get(i).getPreu();
@@ -37,7 +38,15 @@ public class Venda {
 		} else {
 				throw new VendaBuidaException("Per fer una venda primer has d’afegir productes");
 				}
+		} catch (IndexOutOfBoundsException e) {
+			e.getMessage();
+			} catch (VendaBuidaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		preuTotalDeVenda=suma;
+		
 		}
 
 	public void addProducto(Producte producto) {
